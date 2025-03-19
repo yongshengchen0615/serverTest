@@ -17,7 +17,7 @@ function renderItems(items) {
         const li = document.createElement("li"); // 創建 <li> 元素
         li.className = "flex justify-between bg-gray-200 p-2 rounded";
         li.innerHTML = `
-            ${item.name}
+            ${item.name} - ${item.phone}
             <div>
                 <button class="update-btn bg-yellow-500 text-white px-2 py-1 mr-2" data-id="${item._id}">修改</button>
                 <button onclick="deleteItem('${item._id}')" class="bg-red-500 text-white px-2 py-1">刪除</button>
@@ -37,15 +37,18 @@ function renderItems(items) {
 // 新增資料
 async function addItem() {
     const newItem = document.getElementById("newItem").value; // 取得輸入框的值
+    const newPhone = document.getElementById("newPhone").value; // 取得輸入框的值
     if (!newItem) return alert("請輸入資料"); // 檢查是否為空
+    if (!newPhone) return alert("請輸入電話"); // 檢查是否為空
 
     await fetch(API_URL, {
         method: "POST", // 使用 POST 方法新增資料
         headers: { "Content-Type": "application/json" }, // 指定資料格式
-        body: JSON.stringify({ name: newItem }) // 傳遞資料
+        body: JSON.stringify({ name: newItem,phone:newPhone }) // 傳遞資料
     });
 
     document.getElementById("newItem").value = ""; // 清空輸入框
+    document.getElementById("newPhone").value = ""; // 清空輸入框
     fetchItems(); // 重新獲取並渲染資料
 }
 
@@ -65,7 +68,7 @@ async function updateItem(id) {
     const response = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newName })
+        body: JSON.stringify({ name: newItem,phone:newPhone })
     });
 
     if (!response.ok) {

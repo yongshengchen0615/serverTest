@@ -10,7 +10,7 @@ router.get("/items", async (req, res) => {
 
 // 新增資料
 router.post("/items", async (req, res) => {
-    const newItem = new Item({ name: req.body.name }); // 創建新資料
+    const newItem = new Item({ name: req.body.name ,phone:req.body.phone}); // 創建新資料
     await newItem.save(); // 儲存到資料庫
     res.json(newItem);
 });
@@ -21,6 +21,7 @@ router.put("/items/:id", async (req, res) => {
         const updatedItem = await Item.findByIdAndUpdate(
             req.params.id,  // 取得 URL 參數中的 ID
             { name: req.body.name },  // 更新 name 欄位
+            { phone: req.body.phone },
             { new: true }  // 回傳更新後的資料
         );
 
