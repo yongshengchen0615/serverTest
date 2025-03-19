@@ -45,5 +45,25 @@ const updateItem = async (req, res) => {
     res.status(500).json({ success: false, message: "伺服器錯誤" });
   }
 };
+// 🔹 查詢 API
+const queryItems = async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q) {
+      return res.status(400).json({ success: false, message: "請提供查詢關鍵字" });
+    }
 
-module.exports = { createItem, getAllItems, updateItem };
+    const items = await itemService.queryItems(q);
+    if (items.length === 0) {
+      return res.status(404).json({ success: false, message: "查無符合的資料" });
+    }
+
+    res.status(200).json({ success: true, data: items });
+  } catch (err) {
+    console.error("❌ 查詢資料失敗:", err);
+    res.status(500).json({ success: false, message: "伺服器錯誤" });
+  }
+};
+
+// 🔹 確保 `module.exports` 包含 `queryItems`
+module.exports = { queryItems, createItem, getAllItems, getItemById, updateItem, deleteItem };
