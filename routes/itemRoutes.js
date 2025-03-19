@@ -4,8 +4,9 @@ const itemController = require("../controllers/itemController");
 
 router.post("/", itemController.createItem);
 router.get("/", itemController.getAllItems);
+// 🔹 確保 `/search` 放在 `/:id` 之前
+router.get("/search", itemController.queryItems);
 router.get("/:id", itemController.getItemById);
 router.put("/:id", itemController.updateItem);
 router.delete("/:id", itemController.deleteItem);
-router.get("/search", itemController.queryItems); // 🔹 查詢 API
 module.exports = router;

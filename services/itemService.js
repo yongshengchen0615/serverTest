@@ -10,7 +10,6 @@ const getAllItems = async () => {
   return await Item.find();
 };
 
-// 取得單筆資料
 const getItemById = async (id) => {
   return await Item.findById(id);
 };

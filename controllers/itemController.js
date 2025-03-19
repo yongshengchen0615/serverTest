@@ -39,10 +39,18 @@ const getAllItems = async (req, res) => {
 // 🔹 取得單筆資料（修正缺失的 `getItemById`）
 const getItemById = async (req, res) => {
   try {
-    const item = await itemService.getItemById(req.params.id);
+    const { id } = req.params;
+
+    // 🔹 檢查 id 是否為有效的 MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: "無效的 ID 格式" });
+    }
+
+    const item = await itemService.getItemById(id);
     if (!item) {
       return res.status(404).json({ success: false, message: "找不到該筆資料" });
     }
+
     res.status(200).json({ success: true, data: item });
   } catch (err) {
     console.error("❌ 取得單筆資料失敗:", err);
