@@ -54,18 +54,22 @@ async function addItem() {
     }
 
     try {
+        const requestBody = JSON.stringify({ userId, name, description });
+        console.log("📌 發送到後端的資料:", requestBody); // 🔹 確保 userId 被傳送
+
         const res = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId, name, description }), // 🔹 確保 userId 被傳遞
+            body: requestBody,
         });
 
         const result = await res.json();
+        console.log("📌 伺服器回應:", result); // 🔹 檢查後端回應
+
         if (!res.ok || !result.success) {
             throw new Error("新增資料失敗");
         }
 
-        // 清空輸入框
         document.getElementById("userId").value = "";
         document.getElementById("itemName").value = "";
         document.getElementById("itemDesc").value = "";
