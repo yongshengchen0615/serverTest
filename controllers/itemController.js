@@ -16,7 +16,7 @@ const createItem = async (req, res) => {
   }
 };
 
-// 🔹 取得所有
+// 🔹 取得所有資料
 const getAllItems = async (req, res) => {
   try {
     const items = await itemService.getAllItems();
@@ -27,7 +27,21 @@ const getAllItems = async (req, res) => {
   }
 };
 
-// 🔹 更新
+// 🔹 取得單筆資料（修正缺失的 `getItemById`）
+const getItemById = async (req, res) => {
+  try {
+    const item = await itemService.getItemById(req.params.id);
+    if (!item) {
+      return res.status(404).json({ success: false, message: "找不到該筆資料" });
+    }
+    res.status(200).json({ success: true, data: item });
+  } catch (err) {
+    console.error("❌ 取得單筆資料失敗:", err);
+    res.status(500).json({ success: false, message: "伺服器錯誤" });
+  }
+};
+
+// 🔹 更新資料
 const updateItem = async (req, res) => {
   try {
     const { userId, name, description } = req.body;
@@ -45,7 +59,22 @@ const updateItem = async (req, res) => {
     res.status(500).json({ success: false, message: "伺服器錯誤" });
   }
 };
-// 🔹 查詢 API
+
+// 🔹 刪除資料（補上缺失的 `deleteItem`）
+const deleteItem = async (req, res) => {
+  try {
+    const item = await itemService.deleteItem(req.params.id);
+    if (!item) {
+      return res.status(404).json({ success: false, message: "找不到該筆資料" });
+    }
+    res.status(200).json({ success: true, message: "資料已刪除" });
+  } catch (err) {
+    console.error("❌ 刪除資料失敗:", err);
+    res.status(500).json({ success: false, message: "伺服器錯誤" });
+  }
+};
+
+// 🔹 查詢資料
 const queryItems = async (req, res) => {
   try {
     const { q } = req.query;
@@ -65,5 +94,5 @@ const queryItems = async (req, res) => {
   }
 };
 
-// 🔹 確保 `module.exports` 包含 `queryItems`
-module.exports = { queryItems, createItem, getAllItems, updateItem, deleteItem };
+// 🔹 確保 `module.exports` 包含所有函數
+module.exports = { queryItems, createItem, getAllItems, getItemById, updateItem, deleteItem };
