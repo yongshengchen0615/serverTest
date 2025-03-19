@@ -1,3 +1,4 @@
+const mongoose = require("mongoose"); // 確保 mongoose 被正確引入
 const express = require("express");
 const router = express.Router();
 const Item = require("./models/Item");
@@ -18,7 +19,7 @@ router.post("/items", async (req, res) => {
 // 更新資料（修改名稱）
 router.put("/items/:id", async (req, res) => {
     try {
-        const { name, phone } = req.body; // 從請求中取得新名稱和電話
+        const { name, phone } = req.body; // 從請求中取得 name 和 phone
         const id = req.params.id; // 取得 URL 參數中的 ID
 
         console.log("收到更新請求，ID:", id, "新名稱:", name, "新電話:", phone);
@@ -26,6 +27,11 @@ router.put("/items/:id", async (req, res) => {
         // 確保 ID 格式正確
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "無效的 ID 格式" });
+        }
+
+        // 確保 name 和 phone 存在且是字串
+        if (typeof name !== "string" || typeof phone !== "string") {
+            return res.status(400).json({ message: "請提供有效的 name 和 phone" });
         }
 
         // 更新資料
