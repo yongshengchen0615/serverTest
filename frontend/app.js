@@ -63,6 +63,8 @@ async function updateItem(id) {
     const newName = prompt("請輸入新的資料名稱：");
     if (!newName) return;
 
+    const newPhone = prompt("請輸入新的電話：");
+    if (!newPhone) return;
     console.log("更新資料 ID:", id); // 確保 ID 正確
 
     const response = await fetch(`${API_URL}/${id}`, {
