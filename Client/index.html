@@ -16,12 +16,13 @@
             <button onclick="searchItems()">🔍 搜尋</button>
         </div>
 
-        <!-- 🔹 輸入表單 -->
-        <div class="form-group">
-            <input type="text" id="itemName" placeholder="輸入名稱">
-            <textarea id="itemDesc" placeholder="輸入描述"></textarea>
-            <button onclick="addItem()">➕ 新增資料</button>
-        </div>
+         <!-- 🔹 輸入表單（新增 userId 欄位） -->
+    <div class="form-group">
+        <input type="text" id="userId" placeholder="輸入使用者 ID">
+        <input type="text" id="itemName" placeholder="輸入名稱">
+        <textarea id="itemDesc" placeholder="輸入描述"></textarea>
+        <button onclick="addItem()">➕ 新增資料</button>
+    </div>
 
         <!-- 🔹 資料列表 -->
         <ul id="itemList"></ul>

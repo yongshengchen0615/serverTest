@@ -20,40 +20,61 @@ async function searchItems() {
     renderItems(items);
 }
 
-// 🔹 新增資料
+// 🔹 新增資料（包含 userId）
 async function addItem() {
+    const userId = document.getElementById("userId").value;
     const name = document.getElementById("itemName").value;
     const description = document.getElementById("itemDesc").value;
 
-    if (!name || !description) {
-        alert("請輸入完整資料！");
+    if (!userId || !name || !description) {
+        alert("請輸入完整資料！（使用者 ID、名稱、描述）");
         return;
     }
 
     const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, description }),
+        body: JSON.stringify({ userId, name, description }),
     });
 
     if (res.ok) {
+        document.getElementById("userId").value = "";
         document.getElementById("itemName").value = "";
         document.getElementById("itemDesc").value = "";
         fetchItems(); // 重新載入列表
     }
 }
 
-// 🔹 編輯資料
-async function editItem(id, currentName, currentDesc) {
+// 🔹 渲染資料列表（顯示 userId）
+function renderItems(items) {
+    const itemList = document.getElementById("itemList");
+    itemList.innerHTML = "";
+
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span>[${item.userId}] ${item.name} - ${item.description}</span>
+            <div>
+                <button class="edit" onclick="editItem('${item._id}', '${item.userId}', '${item.name}', '${item.description}')">✏️ 編輯</button>
+                <button class="delete" onclick="deleteItem('${item._id}')">❌ 刪除</button>
+            </div>
+        `;
+        itemList.appendChild(li);
+    });
+}
+
+// 🔹 編輯資料（包含 userId）
+async function editItem(id, currentUserId, currentName, currentDesc) {
+    const newUserId = prompt("修改使用者 ID：", currentUserId);
     const newName = prompt("修改名稱：", currentName);
     const newDesc = prompt("修改描述：", currentDesc);
 
-    if (!newName || !newDesc) return;
+    if (!newUserId || !newName || !newDesc) return;
 
     const res = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newName, description: newDesc }),
+        body: JSON.stringify({ userId: newUserId, name: newName, description: newDesc }),
     });
 
     if (res.ok) fetchItems();
@@ -68,24 +89,6 @@ async function deleteItem(id) {
     });
 
     if (res.ok) fetchItems();
-}
-
-// 🔹 渲染資料列表
-function renderItems(items) {
-    const itemList = document.getElementById("itemList");
-    itemList.innerHTML = "";
-
-    items.forEach(item => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-            <span>${item.name} - ${item.description}</span>
-            <div>
-                <button class="edit" onclick="editItem('${item._id}', '${item.name}', '${item.description}')">✏️ 編輯</button>
-                <button class="delete" onclick="deleteItem('${item._id}')">❌ 刪除</button>
-            </div>
-        `;
-        itemList.appendChild(li);
-    });
 }
 
 // 🔹 頁面載入時取得所有資料

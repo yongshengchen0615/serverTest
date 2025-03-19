@@ -97,3 +97,9 @@ button.delete {
 button.edit {
     background: #ffc107;
 }
+
+/* 🔹 使用者 ID 欄位樣式 */
+.form-group input#userId {
+    border: 2px solid #007bff;
+    background-color: #f9f9ff;
+}
