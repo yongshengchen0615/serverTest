@@ -1,4 +1,4 @@
-// 伺服器 API 的基礎 URL
+ // 伺服器 API 的基礎 URL
 const API_URL = "https://servertest-gvl6.onrender.com/api/items";
 
 // 取得所有資料並顯示在畫面上
@@ -19,11 +19,18 @@ function renderItems(items) {
         li.innerHTML = `
             ${item.name}
             <div>
-                <button onclick="updateItem('${item._id}')" class="bg-yellow-500 text-white px-2 py-1 mr-2">修改</button>
+                <button class="update-btn bg-yellow-500 text-white px-2 py-1 mr-2" data-id="${item._id}">修改</button>
                 <button onclick="deleteItem('${item._id}')" class="bg-red-500 text-white px-2 py-1">刪除</button>
             </div>
         `;
         itemList.appendChild(li); // 將 <li> 加入列表
+    });
+
+    // 修正 onclick 綁定問題，改用事件監聽
+    document.querySelectorAll(".update-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            updateItem(this.getAttribute("data-id"));
+        });
     });
 }
 
@@ -45,6 +52,20 @@ async function addItem() {
 // 刪除資料
 async function deleteItem(id) {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" }); // 透過 DELETE 請求刪除指定 ID 的資料
+    fetchItems(); // 重新獲取並渲染資料
+}
+
+// **新增 updateItem 函式**
+async function updateItem(id) {
+    const newName = prompt("請輸入新的資料名稱："); // 提示使用者輸入新名稱
+    if (!newName) return; // 如果使用者取消或未輸入則退出
+
+    await fetch(`${API_URL}/${id}`, {
+        method: "PUT", // 使用 PUT 方法更新資料
+        headers: { "Content-Type": "application/json" }, // 指定資料格式
+        body: JSON.stringify({ name: newName }) // 傳遞新的名稱
+    });
+
     fetchItems(); // 重新獲取並渲染資料
 }
 
