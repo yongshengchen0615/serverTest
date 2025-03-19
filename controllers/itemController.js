@@ -39,22 +39,25 @@ const getAllItems = async (req, res) => {
 // 🔹 取得單筆資料（修正缺失的 `getItemById`）
 const getItemById = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { q } = req.query;
 
-    // 🔹 檢查 id 是否為有效的 MongoDB ObjectId
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ success: false, message: "無效的 ID 格式" });
+    // 🔹 確保查詢參數存在
+    if (!q) {
+      return res.status(400).json({ success: false, message: "請提供查詢關鍵字" });
     }
 
-    const item = await itemService.getItemById(id);
-    if (!item) {
-      return res.status(404).json({ success: false, message: "找不到該筆資料" });
+    const items = await itemService.queryItems(q);
+
+    // 🔹 確保 `items` 是陣列
+    if (!Array.isArray(items)) {
+      console.error("❌ 錯誤: 查詢結果不是陣列", items);
+      return res.status(500).json({ success: false, message: "伺服器錯誤：資料格式不正確" });
     }
 
-    res.status(200).json({ success: true, data: item });
+    res.status(200).json({ success: true, data: items });
   } catch (err) {
-    console.error("❌ 取得單筆資料失敗:", err);
-    res.status(500).json({ success: false, message: "伺服器錯誤" });
+    console.error("❌ 查詢資料失敗:", err);
+    res.status(500).json({ success: false, message: "伺服器錯誤", error: err.message });
   }
 };
 

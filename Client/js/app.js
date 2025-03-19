@@ -20,17 +20,23 @@ async function fetchItems() {
 
 // 🔹 搜尋資料
 async function searchItems() {
-    const query = document.getElementById("searchInput").value;
+    const query = document.getElementById("searchInput").value.trim();
     if (!query) {
         alert("請輸入查詢關鍵字！");
         return;
     }
 
     try {
-        const res = await fetch(`${API_URL}/search?q=${query}`);
+        const res = await fetch(`${API_URL}/search?q=${encodeURIComponent(query)}`);
         const result = await res.json();
 
-        // 🔹 檢查 API 回應格式
+        console.log("📌 搜尋 API 回應:", result); // 🔹 檢查後端回應
+
+        // 🔹 檢查 API 是否成功
+        if (!res.ok) {
+            throw new Error(`伺服器回應錯誤: ${res.status} ${res.statusText}`);
+        }
+
         if (!result.success || !Array.isArray(result.data)) {
             throw new Error("查詢結果格式錯誤");
         }
@@ -38,7 +44,7 @@ async function searchItems() {
         renderItems(result.data);
     } catch (error) {
         console.error("❌ 搜尋資料失敗:", error);
-        alert("查詢發生錯誤，請稍後再試！");
+        alert(`查詢發生錯誤: ${error.message}`);
     }
 }
 
