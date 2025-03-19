@@ -66,4 +66,4 @@ const queryItems = async (req, res) => {
 };
 
 // 🔹 確保 `module.exports` 包含 `queryItems`
-module.exports = { queryItems, createItem, getAllItems, getItemById, updateItem, deleteItem };
+module.exports = { queryItems, createItem, getAllItems, updateItem, deleteItem };
