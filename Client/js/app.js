@@ -44,9 +44,9 @@ async function searchItems() {
 
 // 🔹 新增資料（包含 userId）
 async function addItem() {
-    const userId = document.getElementById("userId").value;
-    const name = document.getElementById("itemName").value;
-    const description = document.getElementById("itemDesc").value;
+    const userId = document.getElementById("userId").value.trim();
+    const name = document.getElementById("itemName").value.trim();
+    const description = document.getElementById("itemDesc").value.trim();
 
     if (!userId || !name || !description) {
         alert("請輸入完整資料！（使用者 ID、名稱、描述）");
@@ -57,15 +57,15 @@ async function addItem() {
         const res = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId, name, description }),
+            body: JSON.stringify({ userId, name, description }), // 🔹 確保 userId 被傳遞
         });
 
         const result = await res.json();
-
         if (!res.ok || !result.success) {
             throw new Error("新增資料失敗");
         }
 
+        // 清空輸入框
         document.getElementById("userId").value = "";
         document.getElementById("itemName").value = "";
         document.getElementById("itemDesc").value = "";

@@ -4,11 +4,15 @@ const itemService = require("../services/itemService");
 const createItem = async (req, res) => {
   try {
     const { userId, name, description } = req.body;
+    
+    // 🔹 檢查 `userId` 是否正確傳遞
     if (!userId || !name || !description) {
       return res.status(400).json({ success: false, message: "使用者 ID、名稱與描述為必填" });
     }
 
-    const item = await itemService.createItem(req.body);
+    const newItem = { userId, name, description }; // 確保 userId 存入資料庫
+    const item = await itemService.createItem(newItem);
+
     res.status(201).json({ success: true, data: item });
   } catch (err) {
     console.error("❌ 新增資料失敗:", err);
