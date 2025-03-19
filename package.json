@@ -6,8 +6,8 @@
     "scripts": {
       "start": "node server.js",
       "dev": "nodemon server.js",
-      "build": "npm run build-frontend",
-      "build-frontend": "mkdir -p dist && cp -r frontend/* dist",
+      "build": "npm run build-Client",
+      "build-Client": "mkdir -p dist && cp -r Client/* dist",
       "serve": "node server.js"
     },
     "dependencies": {
