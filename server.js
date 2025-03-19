@@ -24,8 +24,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// 提供 API 路由
+// API 路由
 app.use("/api/items", require("./routes/itemRoutes"));
+
+// **提供靜態檔案，確保 CSS/JS 正確送出**
+const distPath = path.join(__dirname, "dist");
+app.use(express.static(distPath, { extensions: ["html", "css", "js"] }));
 
 // 提供前端靜態檔案
 app.use(express.static(path.join(__dirname, "dist")));
