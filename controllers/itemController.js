@@ -1,3 +1,4 @@
+const Item = require("../models/Item"); // 🔹 確保這行存在
 const itemService = require("../services/itemService");
 
 // 🔹 新增
