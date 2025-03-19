@@ -1,5 +1,4 @@
-require("dotenv").config(); // 載入 .env 檔案的環境變數
-
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,11 +6,12 @@ const path = require("path");
 const routes = require("./routes");
 
 const app = express();
-app.use(cors()); // 允許跨域請求
-app.use(express.json()); // 解析 JSON 格式的請求
+app.use(cors());
+app.use(express.json());
 
-// 連接 MongoDB，使用環境變數中的 MONGO_URI
+// 使用環境變數中的 MONGO_URI
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/adminDB";
+
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
