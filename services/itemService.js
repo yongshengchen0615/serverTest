@@ -28,8 +28,9 @@ const deleteItem = async (id) => {
 const queryItems = async (query) => {
   return await Item.find({
     $or: [
-      { name: { $regex: query, $options: "i" } }, // 忽略大小寫
-      { description: { $regex: query, $options: "i" } }
+      { userId: query }, // 🔹 可搜尋 `userId`
+      { name:  query }, // 忽略大小寫
+      { description: query }
     ]
   });
 };
