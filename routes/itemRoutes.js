@@ -7,5 +7,5 @@ router.get("/", itemController.getAllItems);
 router.get("/:id", itemController.getItemById);
 router.put("/:id", itemController.updateItem);
 router.delete("/:id", itemController.deleteItem);
-
+router.get("/search", itemController.queryItems); // 🔹 查詢 API
 module.exports = router;

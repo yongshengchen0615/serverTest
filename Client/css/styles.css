@@ -19,6 +19,34 @@ h1 {
     color: #333;
 }
 
+/* 🔹 查詢區 */
+.search-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-group input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-group button {
+    padding: 8px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-group button:hover {
+    background: #0056b3;
+}
+
+/* 🔹 輸入表單 */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -45,6 +73,7 @@ button:hover {
     background: #218838;
 }
 
+/* 🔹 資料列表 */
 ul {
     list-style: none;
     padding: 0;
@@ -56,7 +85,9 @@ li {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 button.delete {

@@ -10,14 +10,20 @@
     <div class="container">
         <h1>MongoDB 資料管理</h1>
 
-        <!-- 輸入表單 -->
+        <!-- 🔹 查詢功能 -->
+        <div class="search-group">
+            <input type="text" id="searchInput" placeholder="輸入查詢關鍵字">
+            <button onclick="searchItems()">🔍 搜尋</button>
+        </div>
+
+        <!-- 🔹 輸入表單 -->
         <div class="form-group">
             <input type="text" id="itemName" placeholder="輸入名稱">
             <textarea id="itemDesc" placeholder="輸入描述"></textarea>
-            <button onclick="addItem()">新增資料</button>
+            <button onclick="addItem()">➕ 新增資料</button>
         </div>
 
-        <!-- 資料列表 -->
+        <!-- 🔹 資料列表 -->
         <ul id="itemList"></ul>
     </div>
 

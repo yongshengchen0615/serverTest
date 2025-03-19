@@ -25,4 +25,14 @@ const deleteItem = async (id) => {
   return await Item.findByIdAndDelete(id);
 };
 
-module.exports = { createItem, getAllItems, getItemById, updateItem, deleteItem };
+// 🔹 **新增查詢資料**
+const queryItems = async (query) => {
+  return await Item.find({
+    $or: [
+      { name: { $regex: query, $options: "i" } }, // 忽略大小寫
+      { description: { $regex: query, $options: "i" } }
+    ]
+  });
+};
+
+module.exports = { createItem, getAllItems, getItemById, updateItem, deleteItem, queryItems };
