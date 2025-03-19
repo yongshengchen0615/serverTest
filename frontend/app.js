@@ -1,5 +1,5 @@
 // 伺服器 API 的基礎 URL
-const API_URL = "http://localhost:3000/api/items";
+const API_URL = "https://servertest-gvl6.onrender.com/api/items";
 
 // 取得所有資料並顯示在畫面上
 async function fetchItems() {
