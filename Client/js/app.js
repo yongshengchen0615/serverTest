@@ -2,9 +2,20 @@ const API_URL = "https://servertest-gvl6.onrender.com/api/items"; // 設定 API 
 
 // 🔹 取得所有資料
 async function fetchItems() {
-    const res = await fetch(API_URL);
-    const items = await res.json();
-    renderItems(items);
+    try {
+        const res = await fetch(API_URL);
+        const result = await res.json();
+
+        // 🔹 確保後端回應格式正確
+        if (!result.success || !Array.isArray(result.data)) {
+            throw new Error("後端回應格式錯誤");
+        }
+
+        renderItems(result.data);
+    } catch (error) {
+        console.error("❌ 取得資料失敗:", error);
+        alert("發生錯誤，無法載入資料！");
+    }
 }
 
 // 🔹 搜尋資料
@@ -15,9 +26,20 @@ async function searchItems() {
         return;
     }
 
-    const res = await fetch(`${API_URL}/search?q=${query}`);
-    const items = await res.json();
-    renderItems(items);
+    try {
+        const res = await fetch(`${API_URL}/search?q=${query}`);
+        const result = await res.json();
+
+        // 🔹 檢查 API 回應格式
+        if (!result.success || !Array.isArray(result.data)) {
+            throw new Error("查詢結果格式錯誤");
+        }
+
+        renderItems(result.data);
+    } catch (error) {
+        console.error("❌ 搜尋資料失敗:", error);
+        alert("查詢發生錯誤，請稍後再試！");
+    }
 }
 
 // 🔹 新增資料（包含 userId）
@@ -31,22 +53,37 @@ async function addItem() {
         return;
     }
 
-    const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, name, description }),
-    });
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId, name, description }),
+        });
 
-    if (res.ok) {
+        const result = await res.json();
+
+        if (!res.ok || !result.success) {
+            throw new Error("新增資料失敗");
+        }
+
         document.getElementById("userId").value = "";
         document.getElementById("itemName").value = "";
         document.getElementById("itemDesc").value = "";
+
         fetchItems(); // 重新載入列表
+    } catch (error) {
+        console.error("❌ 無法新增資料:", error);
+        alert("發生錯誤，無法新增資料！");
     }
 }
 
 // 🔹 渲染資料列表（顯示 userId）
 function renderItems(items) {
+    if (!Array.isArray(items)) {
+        console.error("❌ renderItems() 失敗，items 不是陣列:", items);
+        return;
+    }
+
     const itemList = document.getElementById("itemList");
     itemList.innerHTML = "";
 
@@ -71,24 +108,46 @@ async function editItem(id, currentUserId, currentName, currentDesc) {
 
     if (!newUserId || !newName || !newDesc) return;
 
-    const res = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: newUserId, name: newName, description: newDesc }),
-    });
+    try {
+        const res = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId: newUserId, name: newName, description: newDesc }),
+        });
 
-    if (res.ok) fetchItems();
+        const result = await res.json();
+
+        if (!res.ok || !result.success) {
+            throw new Error("更新資料失敗");
+        }
+
+        fetchItems(); // 更新畫面
+    } catch (error) {
+        console.error("❌ 更新資料失敗:", error);
+        alert("發生錯誤，無法更新資料！");
+    }
 }
 
 // 🔹 刪除資料
 async function deleteItem(id) {
     if (!confirm("確定要刪除嗎？")) return;
 
-    const res = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-    });
+    try {
+        const res = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+        });
 
-    if (res.ok) fetchItems();
+        const result = await res.json();
+
+        if (!res.ok || !result.success) {
+            throw new Error("刪除資料失敗");
+        }
+
+        fetchItems(); // 重新載入列表
+    } catch (error) {
+        console.error("❌ 刪除資料失敗:", error);
+        alert("發生錯誤，無法刪除資料！");
+    }
 }
 
 // 🔹 頁面載入時取得所有資料
