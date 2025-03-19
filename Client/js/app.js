@@ -1,4 +1,4 @@
-const API_URL = "https://servertest-se1h.onrender.com/api/items"; // 設定 API 連結
+const API_URL = "https://servertest-gvl6.onrender.com/api/items"; // 設定 API 連結
 
 // 取得所有資料
 async function fetchItems() {
