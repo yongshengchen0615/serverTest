@@ -3,23 +3,24 @@ const itemService = require("../services/itemService");
 // 🔹 新增
 const createItem = async (req, res) => {
   try {
-    console.log("📌 接收到的請求資料:", req.body); // 🔹 檢查前端是否傳遞 userId
+    console.log("📌 接收到的請求資料:", req.body); // 🔹 確保前端傳遞 userId
 
     const { userId, name, description } = req.body;
 
-    // 🔹 檢查 `userId` 是否存在
     if (!userId || !name || !description) {
+      console.error("❌ 參數遺漏:", { userId, name, description });
       return res.status(400).json({ success: false, message: "使用者 ID、名稱與描述為必填" });
     }
 
-    // 🔹 建立新物件，確保 `userId` 存入
     const newItem = new Item({ userId, name, description });
+
     const savedItem = await newItem.save();
+    console.log("✅ 資料成功存入:", savedItem);
 
     res.status(201).json({ success: true, data: savedItem });
   } catch (err) {
-    console.error("❌ 新增資料失敗:", err);
-    res.status(500).json({ success: false, message: "伺服器錯誤" });
+    console.error("🔥 新增資料時發生錯誤:", err); // 🔹 顯示錯誤細節
+    res.status(500).json({ success: false, message: "伺服器錯誤", error: err.message });
   }
 };
 
