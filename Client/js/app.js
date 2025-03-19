@@ -1,6 +1,9 @@
 import { fetchItems, searchItems, addItem, editItem, deleteItem } from "./api.js";
 
-
+// 讓這些函式可以在 HTML 內的 onclick 直接使用
+window.addItem = addItem;
+window.editItem = editItem;
+window.deleteItem = deleteItem;
 
 // 🔹 載入並顯示資料
 async function loadItems() {
