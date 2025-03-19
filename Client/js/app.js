@@ -11,7 +11,8 @@ async function fetchItems() {
     items.forEach(item => {
         const li = document.createElement("li");
         li.innerHTML = `
-            <span>名稱：${item.name} \n 敘述：${item.description}</span>
+            <span>名稱：${item.name}</span>
+            <span>敘述：${item.description}</span>
             <div>
                 <button class="edit" onclick="editItem('${item._id}', '${item.name}', '${item.description}')">編輯</button>
                 <button class="delete" onclick="deleteItem('${item._id}')">刪除</button>
