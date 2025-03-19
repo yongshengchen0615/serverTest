@@ -15,6 +15,26 @@ router.post("/items", async (req, res) => {
     res.json(newItem);
 });
 
+// 更新資料（修改名稱）
+router.put("/items/:id", async (req, res) => {
+    try {
+        const updatedItem = await Item.findByIdAndUpdate(
+            req.params.id,  // 取得 URL 參數中的 ID
+            { name: req.body.name },  // 更新 name 欄位
+            { new: true }  // 回傳更新後的資料
+        );
+
+        if (!updatedItem) {
+            return res.status(404).json({ message: "找不到此 ID 的資料" });
+        }
+
+        res.json(updatedItem);
+    } catch (err) {
+        res.status(500).json({ message: "更新失敗", error: err });
+    }
+});
+
+
 // 刪除資料
 router.delete("/items/:id", async (req, res) => {
     await Item.findByIdAndDelete(req.params.id); // 根據 ID 刪除資料

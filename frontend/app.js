@@ -57,16 +57,25 @@ async function deleteItem(id) {
 
 // **新增 updateItem 函式**
 async function updateItem(id) {
-    const newName = prompt("請輸入新的資料名稱："); // 提示使用者輸入新名稱
-    if (!newName) return; // 如果使用者取消或未輸入則退出
+    const newName = prompt("請輸入新的資料名稱：");
+    if (!newName) return;
 
-    await fetch(`${API_URL}/${id}`, {
-        method: "PUT", // 使用 PUT 方法更新資料
-        headers: { "Content-Type": "application/json" }, // 指定資料格式
-        body: JSON.stringify({ name: newName }) // 傳遞新的名稱
+    console.log("更新資料 ID:", id); // 確保 ID 正確
+
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newName })
     });
 
-    fetchItems(); // 重新獲取並渲染資料
+    if (!response.ok) {
+        const errorMessage = await response.json();
+        console.error("更新失敗：", errorMessage);
+        alert("更新失敗：" + errorMessage.message);
+        return;
+    }
+
+    fetchItems(); // 重新載入資料
 }
 
 // 關鍵字搜尋
