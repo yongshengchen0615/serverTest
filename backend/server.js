@@ -11,6 +11,9 @@ app.use(express.json());
 // 載入 API 路由
 const itemRoutes = require("./routes/itemRoutes");
 app.use("/api/items", itemRoutes);
+// 載入 API 路由
+const addressRoutes = require("./routes/userRoutes");
+app.use("/api/address", addressRoutes);
 
 // 提供前端靜態檔案
 app.use(express.static(path.join(__dirname, "../frontend")));
