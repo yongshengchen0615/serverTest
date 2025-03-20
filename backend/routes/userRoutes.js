@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const userAddress = require("../models/User");
 
 
 // 取得所有資料
 router.get("/", async (req, res) => {
     try {
-        const items = await User.find();
+        const items = await userAddress.find();
         res.json(items);
     } catch (error) {
         res.status(500).json({ message: "無法獲取資料", error: error.message });
