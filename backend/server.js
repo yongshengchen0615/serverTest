@@ -14,6 +14,9 @@ app.use("/api/items", itemRoutes);
 // 載入 API 路由
 const addressRoutes = require("./routes/userRoutes");
 app.use("/api/address", addressRoutes);
+// 載入 API 路由
+const prizePoolRoutes = require("./routes/prizePoolRoutes");
+app.use("/api/prizePool", prizePoolRoutes);
 
 // 提供前端靜態檔案
 app.use(express.static(path.join(__dirname, "../frontend")));
