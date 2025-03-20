@@ -1,22 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const routes = require("./routes");
+require("./database"); // ✅ 直接載入 `database.js`，確保 MongoDB 連線
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// 使用環境變數中的 MONGO_URI
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/adminDB";
-
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log("✅ 已成功連接 MongoDB"))
-  .catch(err => console.error("❌ 連接 MongoDB 失敗：", err));
 
 // 提供前端靜態檔案（讓 Express 直接服務 index.html）
 app.use(express.static(path.join(__dirname, "../frontend")));
