@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者後台</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4">管理者後台v3</h1>
+        
+        <!-- 新增資料輸入框 -->
+        <div class="mb-4">
+            <input type="text" id="newItem" placeholder="輸入新資料" class="border p-2 w-full">
+            <input type="text" id="newPhone" placeholder="輸入電話" class="border p-2 w-full">
+            <button onclick="addItem()" class="bg-blue-500 text-white px-4 py-2 mt-2">新增</button>
+        </div>
+
+        <!-- 關鍵字搜尋輸入框 -->
+        <div class="mb-4">
+            <input type="text" id="searchInput" placeholder="關鍵字搜尋" class="border p-2 w-full">
+            <button onclick="searchItems()" class="bg-green-500 text-white px-4 py-2 mt-2">搜尋</button>
+        </div>
+
+        <!-- 資料列表區塊 -->
+        <ul id="itemList" class="space-y-2"></ul>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
