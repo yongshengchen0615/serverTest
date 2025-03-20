@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const userAddress = require("../models/User");
+const prizePool = require("../models/prizePoolSchema");
 
 
 // 取得所有資料
 router.get("/", async (req, res) => {
     try {
-        const items = await userAddress.find();
+        const items = await prizePool.find();
         res.json(items);
     } catch (error) {
         res.status(500).json({ message: "無法獲取資料", error: error.message });
