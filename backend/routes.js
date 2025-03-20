@@ -23,29 +23,31 @@ router.put("/items/:id", async (req, res) => {
         const id = req.params.id; // 取得 URL 參數中的 ID
 
         console.log("收到更新請求，ID:", id, "新名稱:", name, "新電話:", phone);
+        console.log("請求 body:", req.body);
 
         // 確保 ID 格式正確
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "無效的 ID 格式" });
         }
 
-        // 確保 name 和 phone 存在且是字串
+        // **防止 name 是物件**
         if (typeof name !== "string" || typeof phone !== "string") {
+            console.error("更新失敗：name 或 phone 不是有效字串");
             return res.status(400).json({ message: "請提供有效的 name 和 phone" });
         }
 
         // 更新資料
         const updatedItem = await Item.findByIdAndUpdate(
-            id, // 查找的 ID
-            { name, phone }, // 更新的欄位
-            { new: true, runValidators: true } // 回傳更新後的資料，並啟用驗證
+            id,
+            { name, phone },
+            { new: true, runValidators: true }
         );
 
         if (!updatedItem) {
             return res.status(404).json({ message: "找不到此 ID 的資料" });
         }
 
-        res.json(updatedItem); // 回傳更新後的資料
+        res.json(updatedItem);
     } catch (err) {
         console.error("更新失敗:", err);
         res.status(500).json({ message: "更新失敗", error: err.message });

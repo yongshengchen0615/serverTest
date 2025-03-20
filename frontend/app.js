@@ -60,17 +60,28 @@ async function deleteItem(id) {
 
 // **新增 updateItem 函式**
 async function updateItem(id) {
-    const newName = prompt("請輸入新的資料名稱：");
-    if (!newName) return;
+    let newName = prompt("請輸入新的資料名稱：");
+    if (!newName || newName.trim() === "") {
+        alert("名稱不可為空！");
+        return;
+    }
+    
+    let newPhone = prompt("請輸入新的電話號碼：");
+    if (!newPhone || newPhone.trim() === "") {
+        alert("電話不可為空！");
+        return;
+    }
 
-    const newPhone = prompt("請輸入新的電話：");
-    if (!newPhone) return;
-    console.log("更新資料 ID:", id); // 確保 ID 正確
+    newName = newName.trim(); // 移除前後空格
+    newPhone = newPhone.trim();
+
+    console.log("更新資料 ID:", id, "新名稱:", newName, "新電話:", newPhone);
+    console.log("發送請求的 JSON:", JSON.stringify({ name: newName, phone: newPhone }));
 
     const response = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newItem,phone:newPhone })
+        body: JSON.stringify({ name: newName, phone: newPhone }) // 確保發送的是正確的字串
     });
 
     if (!response.ok) {
