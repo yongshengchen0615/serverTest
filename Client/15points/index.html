@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15點刮刮樂遊戲</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css for cool animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Vue.js -->
+   <!-- ✅ 生產版（正式環境使用） -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-gray-300 flex justify-center items-center min-h-screen text-center">
+
+<!-- 載入畫面 -->
+<div id="loading-screen" class="fixed inset-0 bg-white flex flex-col justify-center items-center z-50">
+    <div class="text-2xl font-bold text-orange-600 mb-4 animate__animated animate__bounce">載入中...</div>
+    <div class="w-12 h-12 border-4 border-orange-300 border-dashed rounded-full animate-spin"></div>
+</div>
+
+
+    <div id="app" class="w-full max-w-md p-5 bg-white shadow-xl rounded-lg animate__animated animate__fadeIn">
+        <h1 class="text-3xl font-bold text-orange-600 mb-2 drop-shadow-md animate__animated animate__bounceInDown">
+            🎉 15點刮刮樂遊戲 🎉
+        </h1>
+        <p class="text-gray-700 mb-4">試試手氣，看看你的獎品是什麼！</p>
+
+       <!-- 可能的獎項 -->
+<div class="bg-yellow-100 border border-yellow-500 p-4 rounded-lg shadow-md text-left animate__animated animate__fadeInLeft">
+    <h3 class="font-bold text-yellow-800 text-lg">🏆 可能獎項：</h3>
+    <ul id="prizes"
+        class="list-none text-gray-800 mt-2 pl-5 max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-yellow-100">
+        <!-- 獎品列表會由 JavaScript 動態填充 -->
+    </ul>
+</div>
+
+        <!-- 刮刮樂區 -->
+        <div class="relative mt-5 inline-block animate__animated animate__zoomIn">
+            <div id="prize" :class="{'animate__animated animate__wobble': isScratching}"
+                 class="w-[300px] h-[150px] flex items-center justify-center text-white text-xl font-bold rounded-lg shadow-lg bg-gradient-to-r from-yellow-400 to-orange-500 border-4 border-yellow-600">
+                ???
+            </div>
+            <canvas id="scratchCanvas" width="300" height="150" class="absolute top-0 left-0 rounded-lg shadow-lg"></canvas>
+        </div>
+
+       
+
+        <!-- 返回按鈕 -->
+        <a href="../home/index.html"
+           class="fixed bottom-5 left-5 bg-orange-500 text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-orange-600 transition-all duration-200 transform hover:scale-110 hover:animate-pulse">
+            返回
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
