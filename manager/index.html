@@ -35,6 +35,7 @@
               <th class="p-2 border">中獎機率</th>
             </tr>
           </thead>
+          <!-- 修正 ref 是陣列錯誤 -->
           <tbody :ref="'sortable-' + item._id">
             <tr v-for="(prize, index) in item.prizeList" :key="index" class="hover:bg-gray-50 cursor-move">
               <td class="p-2 border">{{ prize.order }}</td>
@@ -56,7 +57,7 @@
     </div>
   </div>
 
-  <!-- Vue 程式邏輯 -->
+  <!-- Vue App -->
   <script src="./assets/app.js"></script>
 </body>
 </html>

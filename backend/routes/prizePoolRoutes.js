@@ -20,7 +20,7 @@ router.get("/search", async (req, res) => {
         const items = await Item.find({
             $or: [
                 { id: new RegExp(keyword, "i") },
-                { probability: new RegExp(keyword, "i") }
+                { name: new RegExp(keyword, "i") }
             ]
         });
         res.json(items);
@@ -32,10 +32,10 @@ router.get("/search", async (req, res) => {
  // 更新資料
 router.put("/:id", async (req, res) => {
     try {
-        const { name, phone } = req.body;
+        const { name, prize } = req.body;
         const updatedItem = await Item.findByIdAndUpdate(
             req.params.id,
-            { name, phone },
+            { name, prize },
             { new: true, runValidators: true }
         );
  
