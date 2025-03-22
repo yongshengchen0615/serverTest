@@ -1,0 +1,63 @@
+<!-- prize-admin/index.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>獎項管理後台</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+  <div id="app" class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">🎯 獎項管理後台</h1>
+
+    <div v-for="item in prizeData" :key="item._id" class="bg-white rounded shadow-md p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">{{ item.name }}（ID: {{ item.id }}）</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full table-auto border border-gray-300 text-left text-sm">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-2 border">排序</th>
+              <th class="p-2 border">獎項名稱</th>
+              <th class="p-2 border">中獎機率</th>
+            </tr>
+          </thead>
+          <!-- 修正 ref 是陣列錯誤 -->
+          <tbody :ref="'sortable-' + item._id">
+            <tr v-for="(prize, index) in item.prizeList" :key="index" class="hover:bg-gray-50 cursor-move">
+              <td class="p-2 border">{{ prize.order }}</td>
+              <td class="p-2 border">
+                <input type="text" v-model="prize.name" class="w-full border rounded p-1" />
+              </td>
+              <td class="p-2 border">
+                <input type="number" v-model="prize.rate" class="w-full border rounded p-1" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button @click="savePrize(item)"
+              class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        💾 儲存修改
+      </button>
+    </div>
+  </div>
+
+  <!-- Vue App -->
+  <script src="./assets/app.js"></script>
+</body>
+</html>
