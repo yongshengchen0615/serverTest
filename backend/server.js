@@ -13,7 +13,9 @@ app.use("/api/items", require("./routes/itemRoutes"));
 app.use("/api/address", require("./routes/userRoutes"));
 app.use("/api/prizePool", require("./routes/prizePoolRoutes"));
 
-res.sendFile(path.join(__dirname, "../Client/home/index.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Client/home/index.html"));
+});
 
 // 將 manager 資料夾設為靜態資料夾
 app.use(express.static(path.join(__dirname, '../manager')));
