@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📢🎉 經絡工程師 刮刮樂 | 免費按摩等你來刮！ 🎉📢</title>
+
+  <!-- ✅ Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ✅ Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-orange-100 font-sans px-4 py-8">
+
+  <!-- ✅ 提示訊息區 -->
+  <div id="message" class="text-center text-lg text-red-600 mb-6 px-4 py-2 animate__animated">
+    正在獲取您的定位...
+  </div>
+
+  <!-- 用於 JS 動態產生按鈕 -->
+<div id="buttonContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-sm"></div>
+
+  <!-- ✅ JavaScript 主程式 -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
