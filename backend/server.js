@@ -16,6 +16,9 @@ app.use("/api/prizePool", require("./routes/prizePoolRoutes"));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../Client/home/index.html"));
 });
+// 假設你的 index.html 放在 Client/home/index.html
+// 那就要註冊 Client 為靜態路徑
+app.use(express.static(path.join(__dirname, "../Client")));
 
 // 將 manager 資料夾設為靜態資料夾
 app.use(express.static(path.join(__dirname, '../manager')));
