@@ -16,7 +16,7 @@ app.use("/api/prizePool", require("./routes/prizePoolRoutes"));
 // 將 manager 資料夾設為靜態資料夾
 app.use(express.static(path.join(__dirname, '../manager')));
 // 動態處理多個前端資料夾
-const staticPaths = ["home", "5points", "10points", "15points", "20points"];
+const staticPaths = ["home", "prototype"];
 staticPaths.forEach((dir) => {
   app.use(`/${dir}`, express.static(path.join(__dirname, `../Client/${dir}`)));
 
