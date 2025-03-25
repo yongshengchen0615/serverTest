@@ -10,7 +10,7 @@ export const themeStyles = {
     title: "font-baloo text-5xl text-pink-600 font-extrabold mb-3 drop-shadow-md",
 
     // 🧊 卡片容器（外框）
-    card: "bg-white/20 border-yellow-300 text-gray-900 w-full max-w-md mx-auto mt-16",
+    card: "bg-white/30 border-yellow-300 text-gray-900 w-full max-w-md mx-auto mt-0",
 
     // 📢 小提示
     hint: "mt-3 text-pink-500 font-bold",
@@ -52,13 +52,13 @@ export const themeStyles = {
     title: "font-baloo text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 font-extrabold mb-6 drop-shadow-lg animate__animated animate__rubberBand text-center px-4",
 
     // 🧁 卡片容器：可愛蛋糕盒＋邊框糖霜感
-    card: "bg-white/80 border-[3px] border-dashed border-pink-300 text-gray-900 w-full max-w-[90vw] sm:max-w-sm mx-auto mt-8 sm:mt-16 rounded-[30px] shadow-2xl backdrop-blur-md px-4 sm:px-8",
+    card: "bg-white/80 border-[3px] border-dashed border-pink-300 text-gray-900 w-full max-w-[90vw] sm:max-w-sm mx-auto mt-0 sm:mt-16 rounded-[30px] shadow-2xl backdrop-blur-md px-4 sm:px-8",
 
     // 📢 小提示文字：馬卡龍色大字
     hint: "mt-4 text-blue-500 font-extrabold text-base sm:text-lg text-center animate__animated animate__flash animate__infinite px-4",
 
     // 🎁 獎品清單區：糖果盒卡片
-    prizeList: "bg-yellow-50 border-[3px] border-pink-400 p-4 sm:p-5 rounded-[24px] mt-6 shadow-inner text-left text-sm sm:text-base",
+    prizeList: "bg-yellow-50 border-[3px] border-pink-400 p-4 sm:p-5 rounded-[24px] mt- shadow-inner text-left text-sm sm:text-base",
 
     // 🎰 刮刮卡樣式：彩虹蛋糕色＋立體邊框
     scratchCard: "w-[300px] h-[150px] flex items-center justify-center text-white text-2xl sm:text-3xl font-extrabold rounded-[24px] shadow-2xl bg-gradient-to-br from-pink-300 via-yellow-300 to-purple-400 border-[5px] border-white relative",
@@ -94,7 +94,7 @@ export const themeStyles = {
     title: "font-baloo text-4xl sm:text-5xl lg:text-6xl text-red-600 font-extrabold mb-3 drop-shadow-[2px_2px_0_gold] text-center",
 
     // 🎴 卡片容器（白底＋金邊＋透明感）
-    card: "bg-white/80 border-2 border-yellow-500 rounded-xl shadow-xl w-[90%] sm:w-[80%] md:w-[600px] mx-auto mt-10 p-4",
+    card: "bg-white/80 border-2 border-yellow-500 rounded-xl shadow-xl w-[90%] sm:w-[80%] md:w-[600px] mx-auto mt-0 p-4",
 
     // 🧨 小提示（紅金字，閃動動畫）
     hint: "mt-3 text-red-600 font-bold text-base sm:text-lg animate__animated animate__flash animate__infinite",
