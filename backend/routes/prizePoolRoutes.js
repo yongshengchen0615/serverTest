@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const prizePool = require("../models/prizePoolSchema");
+// 新增資料
+router.post("/", async (req, res) => {
+    try {
+        const { name, prize, style, titleText } = req.body;
+        const newItem = new Item({ name, prize, style, titleText});
+        await newItem.save();
+        res.json(newItem);
+    } catch (error) {
+        res.status(500).json({ message: "新增失敗", error: error.message });
+    }
+ });
 
 
 // 取得所有資料
