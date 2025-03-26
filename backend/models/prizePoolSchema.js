@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // 定義 獎項 資料表結構
 const prizePoolSchema = new mongoose.Schema({
-  id: { type: String, required: true },
+  id: { type: String, default: () => Date.now().toString() },
   name: { type: String, required: true },
   prize: {type: [String], required: true},
   style: { type: String, required: true },
