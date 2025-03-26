@@ -4,11 +4,9 @@ const mongoose = require("mongoose");
 const prizePoolSchema = new mongoose.Schema({
   id: { type: String, required: true },
   name: { type: String, required: true },
-  prize: {
-    type: [String], required: true,
-    style: { type: String, required: true },
-    titleText: { type: String, required: true },
-  }
+  prize: {type: [String], required: true},
+  style: { type: String, required: true },
+  titleText: { type: String, required: true },
 
 }, { timestamps: true });
 
