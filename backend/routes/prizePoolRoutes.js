@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 // 依照 ID 查詢單筆資料
 router.get("/:id", async (req, res) => {
     try {
-        const item = await Item.findById(req.params.id);
+        const item = await prizePool.findById(req.params.id);
         if (!item) return res.status(404).json({ message: "找不到該資料" });
         res.json(item);
     } catch (error) {
