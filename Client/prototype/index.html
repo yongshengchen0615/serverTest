@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5點刮刮樂遊戲</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Vue -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
+
+  <!-- 自訂字體 -->
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .font-baloo {
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .font-kuai {
+      font-family: 'ZCOOL KuaiLe', cursive;
+    }
+
+    .font-noto {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    #loading-screen {
+      isolation: isolate;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-center">
+  <!-- ✅ Vue 控制背景樣式容器 -->
+  <div :class="[backgroundClass, 'flex justify-center items-center min-h-screen w-full text-center']">
+    <!-- Vue 掛載點（#app） -->
+    <div id="app" :class="[backgroundClass, 'flex justify-center items-center min-h-screen w-full text-center']">
+
+      <!-- 🔄 載入畫面 -->
+      <div id="loading-screen" class="fixed inset-0 bg-white flex flex-col justify-center items-center z-50">
+        <div class="text-2xl font-extrabold text-pink-600 mb-4 animate__animated animate__bounce">🌟 載入中 🌟</div>
+        <div class="w-14 h-14 border-4 border-pink-300 border-dashed rounded-full animate-spin"></div>
+      </div>
+
+      <!-- 🧊 卡片框 -->
+      <div :class="cardClass" class="p-6 backdrop-blur-md shadow-2xl rounded-3xl border-4">
+        <h1 :class="titleClass">{{ titleText }}</h1>
+        <p class="text-gray-700 text-lg animate__animated animate__fadeIn">🤗 幸運時刻來啦！試試手氣吧～</p>
+
+        <div :class="prizeListClass">
+          <h3 class="font-bold text-lg mb-2">🏆 有機會拿到以下獎品：</h3>
+          <ul id="prizes"
+            class="list-disc pl-5 max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-yellow-100">
+            <!-- JS 動態填入 -->
+          </ul>
+        </div>
+
+        <div :class="hintClass">👉 用手指刮一刮哦！</div>
+
+        <div class="relative mt-6 inline-block">
+          <div id="prize" :class="['animate__animated', { 'animate__tada': isScratching }, scratchCardClass]">???</div>
+          <canvas id="scratchCanvas" width="300" height="150" :class="scratchCanvasClass"></canvas>
+        </div>
+        <!-- ⬅️ 返回按鈕
+      <a href="../home/index.html" :class="[backButtonClass, backButtonAnimate]"
+        @mouseenter="backButtonAnimate = currentTheme?.animations?.buttonHover || ''"
+        @mouseleave="backButtonAnimate = ''">
+        ⬅ 返回
+      </a>-->
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Vue 主程式 -->
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

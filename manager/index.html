@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>🎯 經絡工程師獎項管理後台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+  <div id="app" class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8">🎯 經絡工程師獎項管理後台</h1>
+
+    <div v-for="item in prizeData" :key="item._id" class="bg-white rounded shadow-md p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">objectID: {{ item._id }}</h2>
+
+      <!-- 🆕 style 與 titleText 編輯 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="text-sm text-gray-600">標題 titleText：</label>
+          <input type="text" v-model="item.titleText" @input="checkModified(item)" class="w-full border rounded p-2"
+            placeholder="輸入標題文字 (如 10點刮刮樂)" />
+        </div>
+        <div>
+
+          <label class="text-sm text-gray-600">樣式 style：</label>
+          <select v-model="item.style" @change="checkModified(item)" class="w-full border rounded p-2 bg-white">
+            <option value="default">default</option>
+            <option value="birthdayStyles">birthdayStyles</option>
+            <option value="luckyStyles">luckyStyles</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <button @click="addPrize(item)" class="mb-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">
+        ➕ 新增獎項
+      </button>
+
+      <div class="overflow-x-auto">
+        <table class="w-full table-auto border border-gray-300 text-left text-sm">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-2 border">排序</th>
+              <th class="p-2 border">獎項名稱</th>
+              <th class="p-2 border">中獎機率</th>
+              <th class="p-2 border w-12"></th>
+            </tr>
+          </thead>
+          <tbody :ref="el => setRef(item._id, el)">
+            <tr v-for="(prize, index) in item.prizeList" :key="prize._uid" :data-id="prize._uid"
+              class="hover:bg-gray-50">
+              <td class="p-2 border">{{ prize.order }}</td>
+              <td class="p-2 border">
+                <input type="text" v-model="prize.name" @input="checkModified(item)"
+                  class="w-full border rounded p-1" />
+              </td>
+              <td class="p-2 border">
+                <input type="number" v-model.number="prize.rate" @input="checkModified(item)"
+                  class="w-full border rounded p-1" />
+              </td>
+              <td class="p-2 border text-center">
+                <button @click="deletePrize(item, prize)" class="text-red-500 hover:text-red-700">刪除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ✅ 有修改才出現按鈕 -->
+      <button v-if="item.modified" @click="savePrize(item)"
+        class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        💾 確定修改
+      </button>
+    </div>
+    <button @click="createPrizePool"
+    class="mb-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
+    ➕ 新增獎池
+  </button>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
