@@ -5,7 +5,7 @@ export const storeLat = 22.98937130018531;
 export const storeLon = 120.20552318947942;
 
 // 容許距離（公里）→ 0.1 = 100 公尺
-export const allowedDistance = 0.3;
+export const allowedDistance = 2;
 
 /**
  * 計算兩點之間的距離（單位：公里，精準到公尺）
