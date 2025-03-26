@@ -5,8 +5,8 @@ const prizePool = require("../models/prizePoolSchema");
 // 新增資料
 router.post("/", async (req, res) => {
     try {
-        const { name, prize, style, titleText } = req.body;
-        const newItem = new prizePool({ name, prize, style, titleText});
+        const {id, name, prize, style, titleText } = req.body;
+        const newItem = new prizePool({ id,name, prize, style, titleText});
         await newItem.save();
         res.json(newItem);
     } catch (error) {
