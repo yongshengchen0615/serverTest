@@ -57,12 +57,11 @@
       <!-- 🧊 卡片框 -->
       <div :class="cardClass" class="p-6 backdrop-blur-md shadow-2xl rounded-3xl border-4">
         <h1 :class="titleClass">{{ titleText }}</h1>
-        <p class="text-gray-700 text-lg animate__animated animate__fadeIn">🤗 幸運時刻來啦！試試手氣吧～</p>
 
         <div :class="prizeListClass">
           <h3 class="font-bold text-lg mb-2">🏆 有機會拿到以下獎品：</h3>
           <ul id="prizes"
-            class="list-disc pl-5 max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-yellow-100">
+            class="list-disc pl-0 max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-yellow-100">
             <!-- JS 動態填入 -->
           </ul>
         </div>

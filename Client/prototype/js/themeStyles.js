@@ -7,7 +7,7 @@ export const themeStyles = {
     background: "bg-gradient-to-br from-pink-200 via-yellow-100 to-blue-100",
 
     // 🎉 標題文字
-    title: "font-baloo text-5xl text-pink-600 font-extrabold mb-3 drop-shadow-md",
+    title: "font-baloo text-3xl sm:text-4xl md:text-5xl text-pink-600 font-extrabold mb-3 drop-shadow-md",
 
     // 🧊 卡片容器（外框）
     card: "bg-white/30 border-yellow-300 text-gray-900 w-full max-w-md mx-auto mt-0",
@@ -126,5 +126,87 @@ export const themeStyles = {
       hint: "animate__animated animate__pulse animate__infinite",
       scratchCard: "animate__animated animate__zoomIn"
     },
+  },
+  //極簡冷色系（科技感）
+  minimalCool: {
+    background: "bg-gradient-to-br from-blue-200 via-white to-slate-100",
+    title: "font-sans text-3xl sm:text-4xl md:text-5xl text-sky-700 font-extrabold tracking-wide mb-4",
+    card: "bg-white/70 border border-sky-300 text-gray-800 w-full max-w-md mx-auto rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.05)]",
+    hint: "mt-3 text-sky-500 italic font-medium",
+    prizeList: "bg-sky-50 border border-sky-300 p-4 rounded-xl mt-5 shadow-inner text-left list-none pl-0 space-y-2",
+    scratchCard: "w-[300px] h-[150px] flex items-center justify-center text-sky-900 text-2xl font-bold rounded-2xl shadow-inner bg-gradient-to-r from-sky-200 to-blue-300 border-4 border-sky-500 relative",
+    scratchCanvas: "absolute top-0 left-0 rounded-2xl cursor-pointer",
+    backButtonBase: "fixed bottom-2 left-4 bg-sky-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300",
+    backButtonHover: "hover:bg-sky-700 hover:scale-105",
+    backButtonAnimate: "animate__animated animate__fadeInUp",
+    animations: {
+      title: "animate__animated animate__fadeInDown",
+      card: "animate__animated animate__fadeIn",
+      prizeList: "animate__animated animate__fadeInLeft",
+      hint: "animate__animated animate__pulse animate__infinite",
+      scratchCard: "animate__animated animate__zoomIn"
+    }
+  },
+  //自然清新風
+  natureFresh: {
+    background: "bg-gradient-to-br from-green-100 via-lime-100 to-emerald-50",
+    title: "font-serif text-3xl sm:text-4xl md:text-5xl text-emerald-700 font-bold mb-4",
+    card: "bg-white/70 border border-emerald-300 text-emerald-900 w-full max-w-md mx-auto rounded-xl shadow-md",
+    hint: "mt-3 text-lime-600 italic font-medium",
+    prizeList: "bg-lime-50 border border-lime-300 p-4 rounded-2xl mt-5 shadow-inner text-left list-none pl-0 space-y-2",
+    scratchCard: "w-[300px] h-[150px] flex items-center justify-center text-emerald-800 text-2xl font-bold rounded-2xl shadow-inner bg-gradient-to-r from-lime-200 to-emerald-300 border-4 border-emerald-500 relative",
+    scratchCanvas: "absolute top-0 left-0 rounded-2xl cursor-pointer",
+    backButtonBase: "fixed bottom-2 left-4 bg-emerald-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300",
+    backButtonHover: "hover:bg-emerald-600 hover:scale-105",
+    backButtonAnimate: "animate__animated animate__bounceIn",
+    animations: {
+      title: "animate__animated animate__fadeInDown",
+      card: "animate__animated animate__fadeIn",
+      prizeList: "animate__animated animate__lightSpeedInLeft",
+      hint: "animate__animated animate__pulse animate__infinite",
+      scratchCard: "animate__animated animate__zoomIn"
+    }
+  },
+  //粉彩可愛風（馬卡龍）
+  pastelCute: {
+    background: "bg-gradient-to-br from-pink-100 via-rose-100 to-violet-200",
+    title: "font-baloo text-3xl sm:text-4xl md:text-5xl text-pink-500 font-extrabold mb-4 drop-shadow",
+    card: "bg-white/50 border border-pink-200 text-pink-800 w-full max-w-md mx-auto rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.08)]",
+    hint: "mt-3 text-pink-400 italic font-semibold",
+    prizeList: "bg-pink-50 border border-pink-300 p-4 rounded-2xl mt-5 shadow-inner text-left list-none pl-0 space-y-2",
+    scratchCard: "w-[300px] h-[150px] flex items-center justify-center text-pink-700 text-2xl font-bold rounded-2xl shadow-lg bg-gradient-to-r from-pink-200 to-yellow-200 border-4 border-pink-300 relative",
+    scratchCanvas: "absolute top-0 left-0 rounded-2xl cursor-pointer",
+    backButtonBase: "fixed bottom-2 left-4 bg-pink-400 text-white font-bold py-2 px-6 rounded-full shadow-md transition duration-300",
+    backButtonHover: "hover:bg-pink-500 hover:scale-110",
+    backButtonAnimate: "animate__animated animate__headShake",
+    animations: {
+      title: "animate__animated animate__bounceInDown",
+      card: "animate__animated animate__fadeInDown",
+      prizeList: "animate__animated animate__fadeInLeft",
+      hint: "animate__animated animate__pulse animate__infinite",
+      scratchCard: "animate__animated animate__zoomIn"
+    }
+  },
+
+  
+  //像素懷舊風（遊戲感）
+  pixelRetro: {
+    background: "bg-gradient-to-br from-gray-900 via-gray-800 to-black",
+    title: "font-press-start text-xl sm:text-2xl md:text-3xl text-green-400 mb-4 tracking-widest",
+    card: "bg-black/80 border-green-500 text-green-300 w-full max-w-md mx-auto border-2",
+    hint: "mt-3 text-lime-300 font-mono text-sm",
+    prizeList: "bg-gray-900 border-2 border-lime-400 p-4 rounded-lg mt-5 shadow-inner font-mono text-green-300 text-left list-none pl-0 space-y-2",
+    scratchCard: "w-[300px] h-[150px] flex items-center justify-center text-lime-300 text-lg font-bold rounded-md shadow-xl bg-gradient-to-r from-gray-700 to-gray-900 border-2 border-green-500 relative",
+    scratchCanvas: "absolute top-0 left-0 rounded-md cursor-pointer",
+    backButtonBase: "fixed bottom-1 left-4 bg-green-600 text-black font-bold py-2 px-5 rounded shadow-xl font-press-start",
+    backButtonHover: "hover:bg-green-500 hover:scale-105",
+    backButtonAnimate: "animate__animated animate__flash",
+    animations: {
+      title: "animate__animated animate__bounceIn",
+      card: "animate__animated animate__fadeInUpBig",
+      prizeList: "animate__animated animate__lightSpeedInLeft",
+      hint: "animate__animated animate__pulse animate__infinite",
+      scratchCard: "animate__animated animate__tada"
+    }
   },
 };
