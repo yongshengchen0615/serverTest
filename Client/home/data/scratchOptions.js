@@ -1,4 +1,4 @@
-// 可支援點數與主題 targetName 在網址輸入index.html?buttons=points5,points10,birthdayTheme
+// 可支援點數與主題 targetName 在網址輸入index.html?buttons=5點,10點,20點
 // label是按鈕名稱
 
 export const scratchOptions = [
@@ -7,6 +7,8 @@ export const scratchOptions = [
     { label: "15點",objID:"67dd48c49177db210a18ff5c"},
     { label: "20點" ,objID:"67dd4c419177db210a18ff5d"},
     { label: "壽星刮刮樂",objID:"67e22df58ffe5834ca8f4014" },
-    { label: "幸運10號刮刮樂",objID:"67e2498b01fdbda8720f02e6" }
+    { label: "幸運10號刮刮樂",objID:"67e2498b01fdbda8720f02e6" },
+
+   // { label: "未命名獎池",objID:"67e3a1b05f84cc556f41adb8" }
   ];
   
