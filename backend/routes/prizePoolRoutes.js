@@ -13,8 +13,6 @@ router.post("/", async (req, res) => {
         res.status(500).json({ message: "新增失敗", error: error.message });
     }
  });
-
-
 // 取得所有資料
 router.get("/", async (req, res) => {
     try {
@@ -69,4 +67,14 @@ router.put("/:id", async (req, res) => {
         res.status(500).json({ message: "更新失敗", error: error.message });
     }
 });
+
+// 刪除資料
+router.delete("/:id", async (req, res) => {
+    try {
+        await prizePool.findByIdAndDelete(req.params.id);
+        res.json({ message: "刪除成功" });
+    } catch (error) {
+        res.status(500).json({ message: "刪除失敗", error: error.message });
+    }
+ });
 module.exports = router;
