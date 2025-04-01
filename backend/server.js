@@ -29,7 +29,7 @@ app.use('/api/prizePool', await import('./routes/prizePoolRoutes.js').then(mod =
 // ✅ 靜態頁面路由處理
 
 // 多前端資料夾（支援 /home, /prototype）
-const staticPaths = ['home', 'prototype'];
+const staticPaths = ['home', 'prototype','Reserve'];
 staticPaths.forEach((dir) => {
   const staticDir = path.join(__dirname, `../Client/${dir}`);
   app.use(`/${dir}`, express.static(staticDir));
