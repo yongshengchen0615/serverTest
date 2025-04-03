@@ -25,6 +25,7 @@ import './config/database.js';
 app.use('/api/items', await import('./routes/itemRoutes.js').then(mod => mod.default));
 app.use('/api/address', await import('./routes/userRoutes.js').then(mod => mod.default));
 app.use('/api/prizePool', await import('./routes/prizePoolRoutes.js').then(mod => mod.default));
+app.use('/api/events', await import('./routes/eventRoutes.js').then(mod => mod.default));
 
 // ✅ 靜態頁面路由處理
 
