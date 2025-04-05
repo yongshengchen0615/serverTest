@@ -26,7 +26,8 @@ app.use('/api/items', await import('./routes/itemRoutes.js').then(mod => mod.def
 app.use('/api/address', await import('./routes/userRoutes.js').then(mod => mod.default));
 app.use('/api/prizePool', await import('./routes/prizePoolRoutes.js').then(mod => mod.default));
 app.use('/api/events', await import('./routes/eventRoutes.js').then(mod => mod.default));
-app.use('/api/booking-config', require('./routes/bookingConfigRoutes.js'));
+app.use('/api/booking-config', await import('./routes/bookingConfigRoutes.js').then(mod => mod.default));
+
 
 
 // ✅ 靜態頁面路由處理

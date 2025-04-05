@@ -1,5 +1,5 @@
 // models/BookingConfig.js
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const bookingConfigSchema = new mongoose.Schema({
   startTime: String,
@@ -25,4 +25,4 @@ const bookingConfigSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model("BookingConfig", bookingConfigSchema);
+export default mongoose.model("BookingConfig", bookingConfigSchema);
